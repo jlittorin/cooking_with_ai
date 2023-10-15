@@ -10,7 +10,7 @@ interface Props {
 
 const RecipeList = ({ recipes, onCreate, onSelect }: Props) => {
   return (
-    <div className="flex flex-row flex-wrap">
+    <div className="flex flex-wrap">
       {recipes.map((recipe, index) => (
         <RecipeCard
           key={index}

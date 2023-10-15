@@ -16,7 +16,7 @@ const DisplayRecipe = ({ recipe, onClose }: Props) => {
 
   return (
     <div
-      className="fixed flex justify-center inset-0 backdrop-blur-md bg-white/30"
+      className="fixed flex justify-center inset-0 backdrop-blur-md bg-black/50"
       onClick={handleClick}
     >
       <div className="w-[800px] my-4 p-4 h-auto overflow-y-auto shadow-2xl bg-white rounded-xl">
