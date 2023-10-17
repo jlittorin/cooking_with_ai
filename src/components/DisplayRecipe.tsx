@@ -9,7 +9,6 @@ const DisplayRecipe = ({ recipe, onClose }: Props) => {
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     // Check if the click was directly on the outer div
     if (e.target === e.currentTarget) {
-      console.log("Outer div was clicked!");
       onClose();
     }
   };
