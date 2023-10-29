@@ -1,6 +1,6 @@
 import Recipe from '../models/Recipe'
 
-const Recipes: Recipe[] = [
+const recipes: Recipe[] = [
     {
       title: "Fancy Food",
       image: "https://unsplash.com/photos/-YHSwy6uqvk/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjk3MzE1NzUzfA&force=true&w=792",
@@ -96,5 +96,15 @@ const Recipes: Recipe[] = [
       ]
     }
   ];
+
+  let recipesMultiplied = recipes;
+  // recipesMultiplied = recipesMultiplied.concat(recipesMultiplied);
+  // recipesMultiplied = recipesMultiplied.concat(recipesMultiplied);
+  // recipesMultiplied = recipesMultiplied.concat(recipesMultiplied);
+  // recipesMultiplied = recipesMultiplied.concat(recipesMultiplied);
+  // recipesMultiplied = recipesMultiplied.concat(recipesMultiplied);
+  // recipesMultiplied = recipesMultiplied.concat(recipesMultiplied);
+
+  const Recipes = recipesMultiplied;
 
 export default Recipes;
