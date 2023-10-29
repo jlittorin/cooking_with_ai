@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  api:
+    image: recipe-api
+    env_file:
+      - .env
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+      target: deploy
+    volumes:
+      - ./db:/app/db
+    ports:
+      - "8000:80"
+    networks:
+      - app-network
+
+  web:
+    image: recipe-web
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+      target: deploy
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+

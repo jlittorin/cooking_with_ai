@@ -29,6 +29,9 @@ bin/
 obj/
 out/
 
+# Docker Compose
+.env
+
 # Data
 db/Recipes.db
 
