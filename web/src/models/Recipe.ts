@@ -5,8 +5,12 @@ class Recipe {
     image!: string;
     description!: string;
     ingredients!: Ingredient[];
-    instructions!: string[];
+    instructions!: Instruction[];
   }
   
+class Instruction {
+    step!: number;
+    text!: string;
+}
 
 export default Recipe;

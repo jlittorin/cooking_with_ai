@@ -19,11 +19,11 @@ const recipes: Recipe[] = [
           { quantity: 3, unit: "tbsp", name: "olive oil" }
         ],
         instructions: [
-          "In a mixing bowl, combine the cooked quinoa, chopped onion, breadcrumbs, eggs, salt, pepper, Parmesan cheese, and chopped parsley. Mix all ingredients until they are well combined.",
-          "Form small patties using your hands. Ensure that each patty is compact to prevent it from falling apart while frying.",
-          "In a non-stick skillet, heat 2 tbsp of olive oil over medium heat. Add the quinoa patties and cook for 4-5 minutes on each side or until they are golden brown and crispy. Remove them from the skillet and set aside.",
-          "In the same skillet, add the remaining tablespoon of olive oil. Carefully crack the quail eggs into the skillet. Cook for 2-3 minutes until the whites are set but the yolks remain runny. You may cover the skillet with a lid for the last minute to ensure the top of the eggs are set.",
-          "Place the fried quail eggs on top of the quinoa patties. Season with additional salt and pepper if desired. Serve immediately and enjoy your crispy quinoa patties topped with delicate quail eggs!",
+          { step: 1, text: "In a mixing bowl, combine the cooked quinoa, chopped onion, breadcrumbs, eggs, salt, pepper, Parmesan cheese, and chopped parsley. Mix all ingredients until they are well combined."},
+          { step: 2, text: "Form small patties using your hands. Ensure that each patty is compact to prevent it from falling apart while frying."},
+          { step: 3, text: "In a non-stick skillet, heat 2 tbsp of olive oil over medium heat. Add the quinoa patties and cook for 4-5 minutes on each side or until they are golden brown and crispy. Remove them from the skillet and set aside."},
+          { step: 4, text: "In the same skillet, add the remaining tablespoon of olive oil. Carefully crack the quail eggs into the skillet. Cook for 2-3 minutes until the whites are set but the yolks remain runny. You may cover the skillet with a lid for the last minute to ensure the top of the eggs are set."},
+          { step: 5, text: "Place the fried quail eggs on top of the quinoa patties. Season with additional salt and pepper if desired. Serve immediately and enjoy your crispy quinoa patties topped with delicate quail eggs!"},
         ]
     },
     {
@@ -42,13 +42,13 @@ const recipes: Recipe[] = [
           { quantity: 5, unit: "tbsp", name: "olive oil" },
         ],
         instructions: [
-          "We put oil to heat in a frying pan. When it is hot enough, fry 2 slices of ham cutted into 4 pieces. Set them aside in the heat.",
-          "In the same pan, add 8 pieces of chorizo of a centimeter of size and after having removed their skin, set them aside with the ham.",
-          "We begin cooking the tomato. To do this, we cut the onion in very thin slices and add them to the pan where we fried the ham and the chorizo (if there is little oil left, we add more). Cook it over a medium heat for about 10 minutes, depending on the thickness of the onion. We add the tomato, of which we have previously removed the skin and cutted into small pieces. Let it cook for about 15 minutes.",
-          "On another pan we will make the fries. We peel and cut the potatoes into small squares, and we will put them in a pan with very hot oil. We will remove them when they turn golden brown.",
-          "After 10 minutes of the tomatoes, include peas, pepper (chopped) and the rest of the ham and chorizo, and let simmer for a few minutes.",
-          "Finally, once drained the fries, add them to the mixture for two minutes so that all ingredients are mixed together well and acquire flavor. Remove from the fire.",
-          "Now we will divide the mixture on 4 plates of clay and include an egg in each of them. Put everything in the oven until the yolk is set.",
+          { step: 1, text: "We put oil to heat in a frying pan. When it is hot enough, fry 2 slices of ham cutted into 4 pieces. Set them aside in the heat."},
+          { step: 2, text: "In the same pan, add 8 pieces of chorizo of a centimeter of size and after having removed their skin, set them aside with the ham."},
+          { step: 3, text: "We begin cooking the tomato. To do this, we cut the onion in very thin slices and add them to the pan where we fried the ham and the chorizo (if there is little oil left, we add more). Cook it over a medium heat for about 10 minutes, depending on the thickness of the onion. We add the tomato, of which we have previously removed the skin and cutted into small pieces. Let it cook for about 15 minutes."},
+          { step: 4, text: "On another pan we will make the fries. We peel and cut the potatoes into small squares, and we will put them in a pan with very hot oil. We will remove them when they turn golden brown."},
+          { step: 5, text: "After 10 minutes of the tomatoes, include peas, pepper (chopped) and the rest of the ham and chorizo, and let simmer for a few minutes."},
+          { step: 6, text: "Finally, once drained the fries, add them to the mixture for two minutes so that all ingredients are mixed together well and acquire flavor. Remove from the fire."},
+          { step: 7, text: "Now we will divide the mixture on 4 plates of clay and include an egg in each of them. Put everything in the oven until the yolk is set."},
         ]
     },
     {
@@ -63,10 +63,10 @@ const recipes: Recipe[] = [
         { quantity: 300, unit: "g", name: "fläskkött eller bacon" }
       ],
       instructions: [
-        "Sätt ugnen på 200°C.",
-        "Häll hälften av mjölken i en skål. Vispa ner mjöl och salt till en jämn smet. Häll i resten av mjölken. Vispa sist ner äggen.",
-        "Skär fläsket i små tärningar. Bryn dem i en stekpanna. Fördela fläsket och fett i en långpanna, 30x40 cm (för 4 port, bilden visar fläskpannkaka för 2 port) gärna med bakplåtspapper, fukta plåten lite och lägg på bakplåtspappret så ligger det still. Häll smeten över fläsktärningarna.",
-        "Grädda i mitten av ugnen ca 25 min. Servera med lingonsylt."
+        { step: 1, text: "Sätt ugnen på 200°C."},
+        { step: 2, text: "Häll hälften av mjölken i en skål. Vispa ner mjöl och salt till en jämn smet. Häll i resten av mjölken. Vispa sist ner äggen."},
+        { step: 3, text: "Skär fläsket i små tärningar. Bryn dem i en stekpanna. Fördela fläsket och fett i en långpanna, 30x40 cm (för 4 port, bilden visar fläskpannkaka för 2 port) gärna med bakplåtspapper, fukta plåten lite och lägg på bakplåtspappret så ligger det still. Häll smeten över fläsktärningarna."},
+        { step: 4, text: "Grädda i mitten av ugnen ca 25 min. Servera med lingonsylt."}
       ]
     },
     {
@@ -89,10 +89,10 @@ const recipes: Recipe[] = [
         { quantity: 1, unit: "portion", name: "Färsk oregano eller timjan" }
       ],
       instructions: [
-        "Sätt ugnen på 225°.",
-        "Krydda kycklingen med salt och peppar. Bryn den i smör i en stekpanna. Bland med oregano och linda skinkskivorna runt kycklingen. Lägg i en ugnssäker form.",
-        "Vispa ihop grädde, vinäger, fond och vitlök. Häll det i formen. Tillaga i mitten av ugnen ca 15 min, eller tills kycklingen är genomstekt.",
-        "Dela sockerärterna och cocktailtomaterna och servera till kycklingen. Toppa med färsk oregano eller timjan."
+        {step : 1, text: "Sätt ugnen på 225°."},
+        {step : 2, text: "Krydda kycklingen med salt och peppar. Bryn den i smör i en stekpanna. Bland med oregano och linda skinkskivorna runt kycklingen. Lägg i en ugnssäker form."},
+        {step : 3, text: "Vispa ihop grädde, vinäger, fond och vitlök. Häll det i formen. Tillaga i mitten av ugnen ca 15 min, eller tills kycklingen är genomstekt."},
+        {step : 4, text: "Dela sockerärterna och cocktailtomaterna och servera till kycklingen. Toppa med färsk oregano eller timjan."}
       ]
     }
   ];

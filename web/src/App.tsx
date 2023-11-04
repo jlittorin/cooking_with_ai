@@ -5,10 +5,12 @@ import Navbar from "./components/Navbar";
 import RecipeList from "./components/RecipeList";
 import Recipe from "./models/Recipe";
 import SearchBox from "./components/SearchBox";
+import CreateRecipe from "./components/CreateRecipe";
 
 function App() {
   const [selectedRecipe, selectRecipe] = useState<Recipe | null>(null);
   const [queryString, setQueryString] = useState("");
+  const [displayCreateRecipe, setDisplayCreateRecipe] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = selectedRecipe != null ? "hidden" : "";
@@ -29,8 +31,8 @@ function App() {
         onSelect={(recipe) => {
           selectRecipe(recipe);
         }}
-        onCreate={(recipe) => {
-          Recipes.concat(recipe);
+        onCreate={() => {
+          setDisplayCreateRecipe(true);
         }}
       />
       {selectedRecipe != null && (
@@ -38,6 +40,13 @@ function App() {
           recipe={selectedRecipe}
           onClose={() => {
             selectRecipe(null);
+          }}
+        />
+      )}
+      {displayCreateRecipe && (
+        <CreateRecipe
+          onClose={(recipe) => {
+            recipe != null && Recipes.push(recipe);
           }}
         />
       )}

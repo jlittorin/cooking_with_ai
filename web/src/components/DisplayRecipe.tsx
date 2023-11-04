@@ -48,10 +48,10 @@ const DisplayRecipe = ({ recipe, onClose }: Props) => {
 
         <h2 className="text-xl pt-8 pb-4">Instructions</h2>
         <ol>
-          {recipe.instructions.map((instruction, index) => (
-            <li key={index} className="flex py-2">
-              <p className="font-semibold pr-4">{index + 1}.</p>
-              <p className="pr-16">{instruction}</p>
+          {recipe.instructions.map((instruction) => (
+            <li key={"instruction" + instruction.step} className="flex py-2">
+              <p className="font-semibold pr-4">{instruction.step}.</p>
+              <p className="pr-16">{instruction.text}</p>
             </li>
           ))}
         </ol>

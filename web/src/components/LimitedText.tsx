@@ -7,7 +7,7 @@ const LimitedText = ({ children, length }: Props) => {
     children.length > length
       ? children.substring(0, length - 3) + " [...]"
       : children;
-  return <div>{text}</div>;
+  return <span>{text}</span>;
 };
 
 export default LimitedText;
