@@ -6,11 +6,13 @@ import RecipeList from "./components/RecipeList";
 import Recipe from "./models/Recipe";
 import SearchBox from "./components/SearchBox";
 import CreateRecipe from "./components/CreateRecipe";
+import EditRecipe from "./components/EditRecipe";
 
 function App() {
   const [selectedRecipe, selectRecipe] = useState<Recipe | null>(null);
   const [queryString, setQueryString] = useState("");
   const [displayCreateRecipe, setDisplayCreateRecipe] = useState(false);
+  const [recipeForEditing, setRecipeForEditing] = useState<Recipe | null>(null);
 
   useEffect(() => {
     document.body.style.overflow = selectedRecipe != null ? "hidden" : "";
@@ -45,8 +47,21 @@ function App() {
       )}
       {displayCreateRecipe && (
         <CreateRecipe
-          onClose={(recipe) => {
-            recipe != null && Recipes.push(recipe);
+          onCreated={(recipe) => {
+            setDisplayCreateRecipe(false);
+            setRecipeForEditing(recipe);
+          }}
+        />
+      )}
+      {recipeForEditing && (
+        <EditRecipe
+          recipe={recipeForEditing}
+          onSave={(recipe) => {
+            Recipes.push(recipe);
+            setRecipeForEditing(null);
+          }}
+          onCancel={() => {
+            setRecipeForEditing(null);
           }}
         />
       )}
