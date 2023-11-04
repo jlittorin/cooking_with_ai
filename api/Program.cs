@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using RecipeApi.Data;
 using RecipeApi.Features.ChatGpt;
 
+const bool UseSwagger = true;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,8 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Get open AI API key from environment
-var openAiKey = Environment.GetEnvironmentVariable("OPEN_AI_API_KEY");
+var openAiKey = GetOpenAiApiKey(builder);
 
 builder.Services.AddHttpClient<ChatGptClient>(client =>
 {
@@ -28,9 +29,11 @@ builder.Services.AddControllers(options =>
 });
 
 // Get db file location from appsettings
-var dbFile = Environment.ExpandEnvironmentVariables(builder.Configuration.GetSection("DatabaseFile").Value);
-var dbPath = Path.GetDirectoryName(dbFile);
-Directory.CreateDirectory(dbPath);
+var dbFile = Environment.ExpandEnvironmentVariables(builder.Configuration.GetSection("DatabaseFile").Value ?? throw new Exception("DatabaseFile not set"));
+var dbDirectory = Path.GetDirectoryName(dbFile) ?? throw new Exception("Couldn't get directory name from DatabaseFile");
+
+// Create the DB directory if it doesn't exist
+Directory.CreateDirectory(dbDirectory);
 
 var connectionString = new SqliteConnectionStringBuilder()
 {
@@ -58,11 +61,11 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
+if (UseSwagger || app.Environment.IsDevelopment())
+{
     app.UseSwagger();
     app.UseSwaggerUI();
-//}
+}
 
 // apply database migrations
 using var scope = app.Services.CreateScope();
@@ -78,3 +81,8 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+static string GetOpenAiApiKey(WebApplicationBuilder builder) =>
+    builder.Environment.IsDevelopment()
+        ? Environment.GetEnvironmentVariable("OPEN_AI_API_KEY") ?? throw new Exception("OPEN_AI_API_KEY not set")
+        : File.ReadAllText("/run/secrets/openai_api_key");
