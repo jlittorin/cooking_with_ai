@@ -1,5 +1,9 @@
 version: '3'
 
+secrets:
+  openai_api_key:
+    environment: "OPEN_AI_API_KEY"
+
 services:
   api:
     image: recipe-api
@@ -9,10 +13,12 @@ services:
       context: ./api
       dockerfile: Dockerfile
       target: deploy
+    secrets:
+      - openai_api_key
     volumes:
       - ./db:/app/db
     ports:
-      - "8000:80"
+      - "5130:80"
     networks:
       - app-network
 

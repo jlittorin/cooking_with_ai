@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using RecipeApi.Data;
 using RecipeApi.Data.Models;
 using RecipeApi.Features.ChatGpt;
+using System.Text.Json;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -25,8 +26,8 @@ public class RecipeController : ControllerBase
     {
         var recipe = _recipeDbContext.Recipes.Find(id);
 
-        return recipe == null 
-            ? NotFound() 
+        return recipe == null
+            ? NotFound()
             : Ok(recipe);
     }
 
@@ -34,9 +35,7 @@ public class RecipeController : ControllerBase
     [HttpPost("fromtext")]
     public async Task<ActionResult<Recipe>> Get([FromBody][ModelBinder(BinderType = typeof(PlainTextModelBinder))] string text)
     {
-        var responseContent = await _chatGptClient.GetRecipeAsync(text);
-        
-        var recipe = responseContent.choices.FirstOrDefault()?.message.content;
+        var recipe = await _chatGptClient.GetRecipeAsync(text);
 
         return recipe == null
             ? NotFound()

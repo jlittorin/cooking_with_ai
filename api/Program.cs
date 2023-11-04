@@ -52,7 +52,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowFrontend",
         builder =>
         {
-            builder.WithOrigins("http://recipe-web") // replace with your frontend container name or its IP
+            builder.WithOrigins("http://localhost:5173") // replace with your frontend container name or its IP
                    .AllowAnyMethod()
                    .AllowAnyHeader();
         });
