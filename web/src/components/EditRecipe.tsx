@@ -39,13 +39,13 @@ const EditRecipe = ({ recipe, onSave, onCancel, onDelete }: Props) => {
   }, [editedRecipe.instructions, addingIngredient]);
 
   return (
-    <div className="fixed flex justify-center inset-0 backdrop-blur-md bg-black/50">
+    <div className="fixed flex justify-center inset-0 backdrop-blur-md bg-black/60">
       <div className="w-[800px] my-4 p-4 h-auto overflow-y-auto shadow-2xl bg-white rounded-xl">
-        <div>
+        <div className="w-full">
           <input
             placeholder="Recipe Title"
             type="text"
-            className="text-4xl py-4 focus:outline-gray-200"
+            className="text-4xl py-4 focus:outline-gray-200 focus:bg-gray-50 w-full"
             value={editedRecipe.title}
             onChange={(e) => {
               setRecipe({ ...editedRecipe, title: e.target.value });
@@ -55,6 +55,7 @@ const EditRecipe = ({ recipe, onSave, onCancel, onDelete }: Props) => {
 
         <ImageUploader
           id="recipe_image"
+          className="mt-4"
           image={editedRecipe.image}
           onImageChanged={(image) => {
             setImage(image);
@@ -68,7 +69,7 @@ const EditRecipe = ({ recipe, onSave, onCancel, onDelete }: Props) => {
             id="recipe_description"
             rows={5}
             placeholder="Recipe Description"
-            className="my-4 border-l-2 pl-4 pr-8 text-sm italic w-full focus:outline-gray-200"
+            className="my-4 border-l-2 pl-4 pr-8 text-sm italic w-full focus:outline-gray-200 focus:bg-gray-50"
             value={editedRecipe.description}
             onChange={(e) => {
               setRecipe({ ...editedRecipe, description: e.target.value });
@@ -161,7 +162,7 @@ const EditRecipe = ({ recipe, onSave, onCancel, onDelete }: Props) => {
                 <td className="flex w-full">
                   <textarea
                     rows={3}
-                    className="flex w-full pr-16 shadow-md bg-gray-50 rounded-md p-1"
+                    className="flex w-full pr-16 shadow-md bg-gray-50 rounded-md p-1 focus:outline-gray-200"
                     value={instruction.text}
                     onChange={(e) => {
                       const newInstructions = editedRecipe.instructions.map(
