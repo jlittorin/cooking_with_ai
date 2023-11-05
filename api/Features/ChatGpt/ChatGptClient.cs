@@ -1,4 +1,5 @@
-﻿using RecipeApi.Data.Models;
+﻿#define USE_GPT
+using RecipeApi.Data.Models;
 using RecipeApi.Features.ChatGpt.Models;
 using System.Text.Json;
 
@@ -10,28 +11,34 @@ public class ChatGptClient
     private readonly HttpClient _httpClient;
 
     private const string systemMessage = """
-You are to convert every user input into a recipe. The returned recipe should be in the following JSON format:
+You are to convert every user input into a recipe. The returned recipe should be in JSON format, and possible to deserialize into the following C# Recipe class:
 
+public class Recipe
 {
-   "title": "dish name",
-   "description": "dish description",
-   "ingredients": [    
-     {"quantity": quantityt_1, "unit": "unit_1", "name": "ingredient_1"},
-     {"quantity": quantityt_2, "unit": "unit_2", "name": "ingredient_2"},
-     ...
-   ],
-   "instructions": [
-     "instruction 1",
-     "instruction 2",
-     ...
-   ]
+    public int Id { get; init; }
+    public required string Title { get; init; }
+    public required string Description { get; init; }
+    public required IEnumerable<RecipeIngredient> Ingredients { get; init; }
+    public required IEnumerable<RecipeInstruction> Instructions { get; init; }
 }
 
-Ingredients should be composed of the quantity (use 0 if not mentioned), unit used (could be "pcs" if no other unit is mentioned, otherwise use an empty string), and ingredient name. 
+public class RecipeIngredient
+{
+    public int Id { get; init; }
+    public required string Name { get; init; }
+    public required string Quantity { get; init; }
+    public required string Unit { get; init; }
+}
 
-Instruction steps don't need to be prepended with any step number.
+public class RecipeInstruction
+{
+    public int Id { get; init; }
+    public int Step { get; init; }
+    public required string Text { get; init; }
+}
 
-Only return this JSON formatted data. 
+
+Only return the JSON formatted data that can be deserialized into these C# classes.
 """;
 
     private const string gpt35 = "gpt-3.5-turbo-instruct";
