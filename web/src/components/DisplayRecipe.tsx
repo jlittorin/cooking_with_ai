@@ -1,11 +1,13 @@
+import { TfiClose, TfiPencilAlt } from "react-icons/tfi";
 import Recipe from "../models/Recipe";
 
 interface Props {
   recipe: Recipe;
+  onEdit: () => void;
   onClose: () => void;
 }
 
-const DisplayRecipe = ({ recipe, onClose }: Props) => {
+const DisplayRecipe = ({ recipe, onEdit, onClose }: Props) => {
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     // Check if the click was directly on the outer div
     if (e.target === e.currentTarget) {
@@ -19,7 +21,18 @@ const DisplayRecipe = ({ recipe, onClose }: Props) => {
       onClick={handleClick}
     >
       <div className="w-[800px] my-4 p-4 h-auto overflow-y-auto shadow-2xl bg-white rounded-xl">
-        <h1 className="text-4xl py-4">{recipe.title}</h1>
+        <div className="flex justify-between items-center w-full">
+          <h1 className="text-4xl py-4">{recipe.title}</h1>
+          <button className="flex mr-2">
+            <TfiPencilAlt
+              className="w-8 h-8 text-gray-400 mr-3"
+              onClick={() => {
+                onEdit();
+              }}
+            />
+            <TfiClose className="w-8 h-8 text-gray-400" onClick={onClose} />
+          </button>
+        </div>
 
         <img className="w-[792px] object-cover" src={recipe.image} />
 

@@ -18,7 +18,11 @@ function IngredientInput<TValue>({
   return (
     <input
       type="text"
-      className={"w-" + width + " shadow-md bg-gray-50 rounded-md p-1"}
+      className={
+        "w-" +
+        width +
+        " shadow-md bg-gray-50 rounded-md p-1 focus:outline-gray-200"
+      }
       value={array[index][property as keyof Ingredient] as string}
       onChange={(e) => {
         setItem(index, property, e.target.value as TValue);

@@ -1,6 +1,7 @@
 import Ingredient from "./Ingredient";
 
 class Recipe {
+    id!: number;
     title!: string;
     image!: string;
     description!: string;

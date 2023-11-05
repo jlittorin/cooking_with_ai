@@ -13,6 +13,7 @@ function App() {
   const [queryString, setQueryString] = useState("");
   const [displayCreateRecipe, setDisplayCreateRecipe] = useState(false);
   const [recipeForEditing, setRecipeForEditing] = useState<Recipe | null>(null);
+  const [recipes, setRecipes] = useState<Recipe[]>(Recipes);
 
   useEffect(() => {
     document.body.style.overflow = selectedRecipe != null ? "hidden" : "";
@@ -28,7 +29,7 @@ function App() {
         }}
       />
       <RecipeList
-        recipes={Recipes}
+        recipes={recipes}
         query={queryString}
         onSelect={(recipe) => {
           selectRecipe(recipe);
@@ -40,6 +41,10 @@ function App() {
       {selectedRecipe != null && (
         <DisplayRecipe
           recipe={selectedRecipe}
+          onEdit={() => {
+            selectRecipe(null);
+            setRecipeForEditing(selectedRecipe);
+          }}
           onClose={() => {
             selectRecipe(null);
           }}
@@ -49,18 +54,40 @@ function App() {
         <CreateRecipe
           onCreated={(recipe) => {
             setDisplayCreateRecipe(false);
-            setRecipeForEditing(recipe);
+            if (recipe) {
+              const newRecipes = [...recipes, recipe];
+              setRecipes(newRecipes);
+              setRecipeForEditing(recipe);
+            }
           }}
         />
       )}
       {recipeForEditing && (
         <EditRecipe
           recipe={recipeForEditing}
-          onSave={(recipe) => {
-            Recipes.push(recipe);
+          onSave={(recipe, image) => {
+            recipe.image = image ? URL.createObjectURL(image) : "";
+            const index = recipes.findIndex((r) => r.id === recipe.id);
+            if (index !== -1) {
+              const newRecipes = [...recipes];
+              newRecipes[index] = recipe;
+              setRecipes(newRecipes);
+            }
+
             setRecipeForEditing(null);
           }}
           onCancel={() => {
+            setRecipeForEditing(null);
+          }}
+          onDelete={() => {
+            const index = recipes.findIndex(
+              (recipe) => recipe.id === recipeForEditing.id
+            );
+            if (index !== -1) {
+              const newRecipes = [...recipes];
+              newRecipes.splice(index, 1);
+              setRecipes(newRecipes);
+            }
             setRecipeForEditing(null);
           }}
         />

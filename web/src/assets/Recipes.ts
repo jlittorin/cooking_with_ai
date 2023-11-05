@@ -1,7 +1,13 @@
 import Recipe from '../models/Recipe'
 
-const recipes: Recipe[] = [
+let NextRecipeId = 5;
+export const GetNextRecipeId = () => {
+  return NextRecipeId++;
+}
+
+export const recipes: Recipe[] = [
     {
+      id: 1,
       title: "Fancy Food",
       image: "https://unsplash.com/photos/-YHSwy6uqvk/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjk3MzE1NzUzfA&force=true&w=792",
       description:
@@ -27,6 +33,7 @@ const recipes: Recipe[] = [
         ]
     },
     {
+      id: 2,
       title: "Huevos a la Flamenca",
       image: "huevos_a_la_flamenca.jpg",
       description: "Indulge in the rich and flavorful Spanish cuisine with this classic Huevos a la Flamenca recipe! A delightful blend of tomatoes, onions, peas, potatoes, and meats, simmered to perfection and crowned with a perfectly baked egg. The spicy chorizo and delicate Serrano ham intertwine with the vibrant vegetables, creating a hearty, satisfying dish that promises to transport your taste buds straight to the heart of Spain. Whether it's brunch or dinner, Huevos a la Flamenca is a timeless dish that will enchant any palate.",
@@ -52,6 +59,7 @@ const recipes: Recipe[] = [
         ]
     },
     {
+      id: 3,
       title: "Fläskpannkaka",
       image: "flaskpannkaka.jpg",
       description: "A traditional Swedish dish, Fläskpannkaka is a scrumptious oven pancake with pork.",
@@ -70,6 +78,7 @@ const recipes: Recipe[] = [
       ]
     },
     {
+      id: 4,
       title: "Kyckling med parmaskinka och balsamsås",
       image: "kyckling_balsamsas.jpg",
       description: "A delightful dish featuring chicken with Parma ham and balsamic sauce.",

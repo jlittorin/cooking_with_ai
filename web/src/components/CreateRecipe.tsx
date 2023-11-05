@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Recipe from "../models/Recipe";
 import ClipLoader from "react-spinners/ClipLoader";
+import { GetNextRecipeId } from "../assets/Recipes";
 
 interface Props {
   onCreated: (recipe: Recipe | null) => void;
@@ -42,6 +43,7 @@ const CreateRecipe = ({ onCreated }: Props) => {
 
       if (response.status == 200) {
         const recipe: Recipe = (await response.json()) as Recipe;
+        recipe.id = GetNextRecipeId();
         onCreated(recipe);
       } else {
         setState("enterBodyText");
@@ -63,10 +65,11 @@ const CreateRecipe = ({ onCreated }: Props) => {
         {state == "enterBodyText" && (
           <span>
             <label htmlFor="recipe_body" className="text-sm text-gray-500">
-              Recipe Body
+              Recipe
             </label>
             <textarea
               id="recipe_body"
+              placeholder="Enter recipe text here"
               rows={10}
               className="flex p-4 w-full bg-white shadow-md rounded"
               onChange={(e) => {
