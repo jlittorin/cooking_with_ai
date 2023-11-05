@@ -1,16 +1,17 @@
 import Ingredient from "../models/Ingredient";
+import Recipe from "../models/Recipe";
 
 interface Props<TValue> {
-  array: Ingredient[];
-  setItem: (index: number, property: string, value: TValue) => void;
+  recipe: Recipe;
+  setRecipe: (recipe: Recipe) => void;
   index: number;
   property: string;
   width: string;
 }
 
 function IngredientInput<TValue>({
-  array,
-  setItem,
+  recipe,
+  setRecipe,
   index,
   property,
   width,
@@ -23,9 +24,15 @@ function IngredientInput<TValue>({
         width +
         " shadow-md bg-gray-50 rounded-md p-1 focus:outline-gray-200"
       }
-      value={array[index][property as keyof Ingredient] as string}
+      value={recipe.ingredients[index][property as keyof Ingredient] as string}
       onChange={(e) => {
-        setItem(index, property, e.target.value as TValue);
+        const newIngredients = recipe.ingredients.map((ingredient, i) => {
+          if (i === index) {
+            return { ...ingredient, [property]: e.target.value };
+          }
+          return ingredient;
+        });
+        setRecipe({ ...recipe, ingredients: newIngredients });
       }}
     />
   );

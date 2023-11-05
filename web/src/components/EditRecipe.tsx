@@ -16,16 +16,6 @@ const EditRecipe = ({ recipe, onSave, onCancel, onDelete }: Props) => {
   const [addingIngredient, setAddingIngredient] = useState<boolean>(false);
   const [image, setImage] = useState<File | null>(null);
 
-  const setIngredient = (index: number, property: string, value: number) => {
-    const newIngredients = recipe.ingredients.map((ingredient, i) => {
-      if (i === index) {
-        return { ...ingredient, [property]: value };
-      }
-      return ingredient;
-    });
-    setRecipe({ ...editedRecipe, ingredients: newIngredients });
-  };
-
   const endOfScreenRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -82,8 +72,8 @@ const EditRecipe = ({ recipe, onSave, onCancel, onDelete }: Props) => {
               <tr key={"ingredient" + index}>
                 <td className="whitespace-nowrap">
                   <IngredientInput
-                    array={editedRecipe.ingredients}
-                    setItem={setIngredient}
+                    recipe={editedRecipe}
+                    setRecipe={setRecipe}
                     index={index}
                     property="quantity"
                     width="10"
@@ -92,8 +82,8 @@ const EditRecipe = ({ recipe, onSave, onCancel, onDelete }: Props) => {
 
                 <td className="whitespace-nowrap">
                   <IngredientInput
-                    array={editedRecipe.ingredients}
-                    setItem={setIngredient}
+                    recipe={editedRecipe}
+                    setRecipe={setRecipe}
                     index={index}
                     property="unit"
                     width="40"
@@ -102,8 +92,8 @@ const EditRecipe = ({ recipe, onSave, onCancel, onDelete }: Props) => {
 
                 <td className="w-full">
                   <IngredientInput
-                    array={editedRecipe.ingredients}
-                    setItem={setIngredient}
+                    recipe={editedRecipe}
+                    setRecipe={setRecipe}
                     index={index}
                     property="name"
                     width="full"
