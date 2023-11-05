@@ -35,6 +35,16 @@ public class RecipeController : ControllerBase
     [HttpPost("fromtext")]
     public async Task<ActionResult<Recipe>> Get([FromBody][ModelBinder(BinderType = typeof(PlainTextModelBinder))] string text)
     {
+        if (text == "")
+        {
+            return new Recipe()
+            {
+                Title = "",
+                Description = "",
+                Ingredients = new List<RecipeIngredient>(),
+                Instructions = new List<RecipeInstruction>(),
+            };
+        }
         var recipe = await _chatGptClient.GetRecipeAsync(text);
 
         return recipe == null

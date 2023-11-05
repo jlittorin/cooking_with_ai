@@ -75,7 +75,7 @@ Only return this JSON formatted data.
     private const string RecipeSample = """
         {
           "Id": 1,
-          "Name": "Classic Tomato Spaghetti",
+          "Title": "Classic Tomato Spaghetti",
           "Description": "This is a classic tomato spaghetti recipe that is simple to make and perfect for a quick and easy meal.",
           "Ingredients": [
             {
